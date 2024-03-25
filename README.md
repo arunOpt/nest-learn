@@ -1,31 +1,3 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
-
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
-
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
-
-## Description
-
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
-
 ## Installation
 
 ```bash
@@ -58,57 +30,54 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
-## Support
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+# to install dependencies
 
-## Stay in touch
+npm i
+@nestjs/common ================containes major classes, functions of nestjs
+@nestjs/core
+@nestjs/platform-express ======lets nest use express for http requests (nest doesnt handle http req by default , we need external implementaion , use express(default when genrated using cli) or fastify)
+reflect-metadata===============helps to make decorator work
+typescript===================== write nest with ts
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+# server
 
-## License
+pipe==========================validation
+guard=========================authentication/authourise
+conr=troller==================route to a particular function
+service ======================run business logic
+repository====================access db
 
-Nest is [MIT licensed](LICENSE).
+controller ================= handle incomming request
+service ==================== run business logic and data access
+module ===================== grop code together
+pipes ====================== validate incomming data
+filters ==================== handle error occured during request handling
+guards ===================== handle authentication
+interceptors =============== handle extra logic to incomming request and outgoing reponse
+repository ================= handle data stored in db
 
-Module consist of the following
-Pipe
-guard
-controller
-service
-repositorty
+# run
 
-"npm i -g @nestjs/cli"
-nest new app-name
+npx ts-node-dev src/main.ts
 
-to generate a module in nest
-"nest generate module mesages" //name of the module without module at the end (nest automatically add module at end of file name)
+# nammin convention
 
-to generate a controller in nest
-"nest genreate conteroller messages/messages --flat" //--flat dont create new folder called controller and add the files there
+className.classType.extension
+eg.
+app.controller.ts
+app.module.ts
 
-Nest decorators and uses
-@Body() ==> get body of post req... {"content":"hi there"}
-@Headers() ==>get heeader of req... example host:localhost:3000
-@Params("id") ==>example http:localhost/3000/223
-@Query() ==> ...example http:localhost/3000?validate=true ..
+# cli
 
-npm install class-transformer
-npm install class-validator
+npm i -g @nestjs/cli
 
-Automatic validation
-1- .use global validation in nest.
-2- . create class with diff prop the req body should have ===>data transfer object===dto
-3- .Add validation rules to class
-4- . apply that class to request handler
+# commands
 
-how validation pipeline works
-1- .use class transformer to turn body into instancoe of dto class
-2- . use class validator to validate the instance
-3- .if validation eroors repond imediately otherwise provide body to request hnadler
+nest generate module messages
+nest generate controller messages/messages --flat
 
-in ts config.json
-"experimentalDecorators": true,
-"allowSyntheticDefaultImports": true,
-using this allows certain type info and decoraters to be a part of compiled js code in the form of metadata.
+controller=====>type of class to generate
+messages/ =====> place file in message folder
+messages ===> call the class messages
+--flat ====> dont create extra folder called controller
